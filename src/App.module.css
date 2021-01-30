@@ -1,0 +1,65 @@
+.App {
+  text-align: center;
+  background-color: #383838;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.AppTitle {
+  padding: 16px;
+  font-size: 3.5em;
+  font-weight: 700;
+  color: white;
+
+  margin-bottom: 8%;
+}
+.BoxWrapper {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 12px 20px 11px #27272985;
+  height: 55vmin;
+  width: 95vmin;
+  padding: 0px;
+}
+@media screen and (max-width: 991.98px) {
+  .BoxWrapper {
+    height: 80%;
+  }
+  .BoxWrapper > div {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 572px) {
+  .BoxWrapper {
+    height: 100%;
+    width: 100%;
+    font-size: 86%;
+  }
+}
+
+.layout {
+  flex-grow: 1;
+  flex-shrink: 1;
+  height: 100%;
+}
+.leftLayout {
+  flex-basis: 60%;
+  border-right: 1px solid rgb(201, 201, 201);
+  background-color: #455a64;
+}
+.rightLayout {
+  flex-basis: 40%;
+  height: 100%;
+  background-color: #f0f0f0;
+}
+.historyLayout {
+  height: calc(100% - 60px);
+}
+.historyTitle {
+  background-color: #cfcece;
+  padding: 12px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
