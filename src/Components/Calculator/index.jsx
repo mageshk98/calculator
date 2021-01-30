@@ -55,8 +55,8 @@ function Calculator(props) {
     if (value === null) {
       console.log("here 1");
       tempState.value = inputValue;
-      if (currentoperator === "sqrt") {
-        tempState.expression = `sqrt(${resultValue})`;
+      if (["sqrt", "power"].includes(currentoperator)) {
+        tempState.expression = `${currentoperator}(${resultValue})`;
       } else if (currentoperator !== "=") {
         tempState.expression = resultValue + String(currentoperator);
       }
