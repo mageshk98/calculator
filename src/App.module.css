@@ -23,21 +23,6 @@
   width: 95vmin;
   padding: 0px;
 }
-@media screen and (max-width: 991.98px) {
-  .BoxWrapper {
-    height: 80%;
-  }
-  .BoxWrapper > div {
-    flex-direction: column;
-  }
-}
-@media screen and (max-width: 572px) {
-  .BoxWrapper {
-    height: 100%;
-    width: 100%;
-    font-size: 86%;
-  }
-}
 
 .layout {
   flex-grow: 1;
@@ -62,4 +47,22 @@
   padding: 12px;
   margin-bottom: 10px;
   font-weight: 600;
+}
+@media screen and (max-width: 991.98px) {
+  .BoxWrapper {
+    height: 80%;
+  }
+  .BoxWrapper > div {
+    flex-direction: column;
+  }
+  .leftLayout {
+    border: none;
+  }
+}
+@media screen and (max-width: 572px) {
+  .BoxWrapper {
+    height: 100%;
+    width: 100%;
+    font-size: 86%;
+  }
 }
