@@ -5,6 +5,7 @@
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  padding-bottom: 20px;
 }
 .list > li {
   padding: 10px;

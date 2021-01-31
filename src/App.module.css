@@ -12,15 +12,14 @@
   font-size: 3.5em;
   font-weight: 700;
   color: white;
-
-  margin-bottom: 4%;
+  margin-bottom: 10px;
 }
 .BoxWrapper {
   background: white;
   border-radius: 10px;
   box-shadow: 0px 12px 20px 11px #27272985;
-  height: 55vmin;
-  width: 95vmin;
+  height: 600px;
+  width: 80%;
   padding: 0px;
 }
 
@@ -31,6 +30,7 @@
 }
 .leftLayout {
   flex-basis: 60%;
+  max-width: 60%;
   border-right: 1px solid rgb(201, 201, 201);
   background-color: #455a64;
 }
@@ -40,12 +40,37 @@
   background-color: #f0f0f0;
 }
 .historyLayout {
-  height: calc(100% - 60px);
+  height: calc(100% - 95px);
+  min-height: 300px;
 }
 .historyTitle {
-  background-color: #cfcece;
   padding: 12px;
   margin-bottom: 10px;
+  font-weight: 600;
+}
+.historyClear {
+  background-color: #696160;
+  color: white;
+  font-size: 1.3em;
+  font-weight: 500;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: 0.3s all ease-in-out;
+}
+.historyClear:hover {
+  background-color: #222020;
+}
+.credits {
+  height: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: rgb(133, 122, 122);
+}
+.credits > a {
+  text-decoration: none;
   font-weight: 600;
 }
 @media screen and (max-width: 991.98px) {
@@ -57,6 +82,7 @@
   }
   .leftLayout {
     border: none;
+    max-width: 100%;
   }
 }
 @media screen and (max-width: 572px) {
@@ -64,5 +90,8 @@
     height: 100%;
     width: 100%;
     font-size: 86%;
+  }
+  .AppTitle {
+    font-size: 15px;
   }
 }

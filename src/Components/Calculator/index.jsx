@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import CalcStyle from "./calculator.module.css";
 function Calculator(props) {
   const InitialState = {
@@ -23,10 +24,17 @@ function Calculator(props) {
   const updateDisplay = (val) => {
     let { isOperatorGiven, expression, resultValue } = calState;
     if (isOperatorGiven) {
+      // if (/power|sqrt/g.test(expression)) {
+      //   console.log("yeah poweror sqrt is there");
+      // }
       setCalState({
         ...calState,
         resultValue: state ? String(val) : resultValue + val,
-        expression: expression === "0" ? String(val) : expression + val,
+        expression: /power|sqrt/g.test(expression)
+          ? expression
+          : expression === "0"
+          ? String(val)
+          : expression + val,
       });
       if (state) {
         setState(false);
@@ -51,41 +59,34 @@ function Calculator(props) {
     let tempState = { ...calState };
     let inputValue = parseFloat(resultValue);
     // if (validate(currentoperator)) return;
-
+    // if (isOperatorGiven && value !== null && resultValue !== "0") {
+    //   let trimmed = String(expression).slice(
+    //     expression.length * -1,
+    //     expression.length - 1
+    //   );
+    //   console.log(trimmed);
+    //   tempState.expression = trimmed + String(currentoperator);
+    // } else
     if (value === null) {
-      console.log("here 1");
       tempState.value = inputValue;
+      tempState.isOperatorGiven = true;
       if (["sqrt", "power"].includes(currentoperator)) {
         tempState.expression = `${currentoperator}(${resultValue})`;
+        tempState.isOperatorGiven = false;
       } else if (currentoperator !== "=") {
         tempState.expression = resultValue + String(currentoperator);
       }
-      tempState.isOperatorGiven = false;
+
       setState(true);
     } else if (operator) {
-      console.log("here 2");
       let result = "";
-
       result = OPERATIONS[operator](value, inputValue);
-
       props.updateHistory({ expression: tempState.expression, result });
-
-      console.log("result", result);
       tempState.value = null;
       tempState.resultValue = String(result);
-
-      //   let trimmed = String(expression).slice(
-      //     expression.length * -1,
-      //     expression.length - 1
-      //   );
-      //   console.log(trimmed);
-      //   tempState.expression = trimmed + String(currentoperator);
+      tempState.isOperatorGiven = true;
     }
-
     tempState.operator = String(currentoperator);
-    tempState.isOperatorGiven = true;
-
-    console.log(tempState);
     setCalState(tempState);
   };
   const handleKeyBoard = (e) => {
@@ -110,7 +111,7 @@ function Calculator(props) {
       }
     } else if (currentKey === "backspace") {
       let newValue = "";
-      if (!["Cannot divide by Zero", "NaN"].includes(resultValue)) {
+      if (!["Cannot divide by Zero", "NaN", "Infinity"].includes(resultValue)) {
         newValue = resultValue.slice(0, -1) || "0";
       }
       setCalState({
@@ -128,13 +129,16 @@ function Calculator(props) {
     <div className="d-flex flex-column h-100">
       <div className={`${CalcStyle.topLayout}`}>
         <p className={`${CalcStyle.expression}`}>{expression}</p>
+
         <strong className={`${CalcStyle.result}`}>{resultValue}</strong>
       </div>
       <div className={`${CalcStyle.bottomLayout}`}>
         <div className="d-flex w-100 h-100">
           <ul className={`${CalcStyle.calcBtnList}`} onClick={handleKeyBoard}>
             <li>
-              <button name="clear">C</button>
+              <button name="clear" title="Clear">
+                C
+              </button>
             </li>
             <li>
               <button name="power">

@@ -9,7 +9,10 @@ function App() {
   const updateHistory = (payload) => {
     setCalculatorHistory((prevState) => [...prevState, payload]);
   };
-  console.log(calculatorHistory);
+  const clearHistory = () => {
+    setCalculatorHistory([]);
+  };
+
   return (
     <div className={AppStyle.App}>
       <h1 className={`${AppStyle.AppTitle}`}>Let's Calculate!!</h1>
@@ -19,10 +22,25 @@ function App() {
             <Calculator updateHistory={updateHistory} />
           </div>
           <div className={`${AppStyle.rightLayout} ${AppStyle.layout}`}>
-            <h4 className={`${AppStyle.historyTitle}`}>History</h4>
+            <div className="d-flex justify-content-between align-items-center mx-4 ">
+              <h4 className={`${AppStyle.historyTitle}`}>History</h4>
+              <button
+                className={`${AppStyle.historyClear}`}
+                onClick={clearHistory}
+              >
+                clear
+              </button>
+            </div>
+
             <section className={AppStyle.historyLayout}>
               <CalcHistory data={calculatorHistory} />
             </section>
+            <p className={`${AppStyle.credits}`}>
+              Developed by{" "}
+              <a href="https://www.linkedin.com/in/mageshkumarofficial/">
+                Magesh K
+              </a>
+            </p>
           </div>
         </div>
       </section>
